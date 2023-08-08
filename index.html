@@ -70,10 +70,10 @@
             margin: 0 5px;
         }
         .welcome-message {
-        display: none;
-        margin-top: 20px;
-        opacity: 0; /* Set initial opacity to 0 */
-        animation: fade-in 1s;
+            display: none;
+            margin-top: 20px;
+            opacity: 0; /* Set initial opacity to 0 */
+            animation: fade-in 1s;
         }
         
         @keyframes fade-in {
@@ -105,7 +105,6 @@
                 transform: translateY(-10px);
             }
         }
-
     </style>
 </head>
 <body>
@@ -161,6 +160,12 @@
             document.getElementById('signup').style.display = 'none';
             document.getElementById('welcome').style.display = 'none';
             document.getElementById(sectionId).style.display = 'block';
+        }
+
+        // Email validation function
+        function isCsusEmail(email) {
+            var emailPattern = /^[a-zA-Z0-9._%+-]+@csus\.edu$/;
+            return emailPattern.test(email);
         }
 
         // Sign In Form Submission
