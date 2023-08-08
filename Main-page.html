@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSU Sacramento Campus</title>
+    <style>
+        /* Basic styling for demonstration purposes */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            background-image: url('https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072821_1280.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        #container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.7);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .suggestion-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .suggestion {
+            flex: 1;
+            margin: 10px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            animation: fade-in 1s;
+        }
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .suggestion h2 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #007bff;
+            color: #333;
+            font-size: 1.5em;
+        }
+        .suggestionForm {
+            display: flex;
+            flex-direction: column;
+        }
+        .suggestionForm label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .suggestionForm input[type="text"],
+        .suggestionForm textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .suggestionForm textarea {
+            resize: vertical;
+        }
+        .suggestionForm button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .suggestionForm button:hover {
+            background-color: #0056b3;
+        }
+        .suggestionList {
+            flex: 1;
+            margin: 10px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            animation: fade-in 1s;
+        }
+        .suggestionList h2 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #007bff;
+            color: #333;
+            font-size: 1.5em;
+        }
+        .suggestionItem {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: rgba(244, 244, 244, 0.9);
+            border-radius: 5px;
+            position: relative;
+        }
+        .suggestionItem strong {
+            font-weight: bold;
+        }
+        .suggestionItem .comment {
+            margin-top: 5px;
+            padding-left: 20px;
+            border-left: 2px solid #007bff;
+            color: #555;
+        }
+        .suggestionItem .reply-form {
+            margin-top: 10px;
+        }
+        .suggestionItem .reply-form input[type="text"],
+        .suggestionItem .reply-form textarea {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .suggestionItem .reply-form button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .suggestionItem .delete-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 3px 7px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .suggestionItem .delete-btn:hover {
+            background-color: #c82333;
+        }
+        .image-container {
+            text-align: center;
+        }
+        .image-name {
+            font-weight: bold;
+        }
+        .gallery-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            animation: fade-in 1s;
+        }
+        #nextButton {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #nextButton:hover {
+            background-color: #0056b3;
+        }
+
+        #backButton {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #backButton:hover {
+            background-color: #0056b3;
+        }
+
+        body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+    #container {
+        max-width: 800px;
+        margin: auto;
+        padding: 20px;
+        text-align: center;
+    }
+    .button-container {
+        margin-top: 30px;
+    }
+    .home-button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        margin: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .home-button:hover {
+        background-color: #0056b3;
+    }
+    </style>
+    <script src="session.js"></script>
+</head>
+<body>
+    <div id="container">
+        
+        <h1 style="text-align: center; color: #007bff; margin-bottom: 20px;">Explore CSU Sacramento Campus</h1>
+        <div class="image-container">
+            <p class="image-name" style="font-size: 1.5em; margin-bottom: 10px; color: #333;">Gems Rose Garden</p>
+            <img class="gallery-image" id="currentImage" src="https://www.csus.edu/news/newsroom/stories/2021/12/images/gems-rose-garden.jpg" alt="Gems Rose Garden">
+        </div>
+        <div class="suggestion-container">
+            <div class="suggestion">
+                <h2>Share Your Ideas</h2>
+                <form id="suggestionForm" class="suggestionForm">
+                    <label for="name" style="color: #333;">Name:</label>
+                    <input type="text" id="name" required>
+                    <label for="suggestion" style="color: #333;">Your Suggestion:</label>
+                    <textarea id="suggestion" rows="4" cols="50" required></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+            <div class="suggestionList">
+                <h2>Comments & Suggestions</h2>
+                <div id="suggestionList" class="suggestionList">
+                    <!-- Display submitted suggestions here -->
+                </div>
+            </div>
+        </div>
+        <button id="backButton">Back</button>
+        <button id="nextButton">Next</button>
+    </div>
+    
+    <script>
+        var images = [
+            {
+                name: "Gems Rose Garden",
+                src: "https://www.csus.edu/news/newsroom/stories/2021/12/images/gems-rose-garden.jpg",
+                label: "Suggestion Box for Gems Rose Garden",
+                placeholder: "Enter your suggestion for Gems Rose Garden...",
+                suggestions: []
+            },
+            {
+                name: "Hangout Garden",
+                src: "https://www.csus.edu/news/newsroom/stories/2021/12/images/gems-map/img/popups/11.jpg",
+                label: "Suggestion Box for Hangout Garden",
+                placeholder: "Enter your suggestion for Hangout Garden...",
+                suggestions: []
+            },
+            // Add more images and their suggestion box info here
+        ];
+
+        var currentImageIndex = 0;
+
+        function updateImageAndSuggestion() {
+            var currentImage = document.getElementById('currentImage');
+            var imageName = document.querySelector('.image-name');
+
+            currentImage.src = images[currentImageIndex].src;
+            imageName.textContent = images[currentImageIndex].name;
+
+            var suggestions = images[currentImageIndex].suggestions || [];
+            suggestions.forEach(function(suggestion, index) {
+            var suggestionList = document.getElementById('suggestionList');
+            var suggestionItem = document.createElement('div');
+            suggestionItem.className = 'suggestionItem';
+            suggestionItem.innerHTML = `
+            <strong>${suggestion.name}:</strong> ${suggestion.text}
+            <div class="comment">
+            <button class="reply-btn" data-index="${index}">Reply</button>
+            ${suggestion.reply ? `<div class="reply">${suggestion.reply}</div>` : ''}
+            </div>
+            <button class="delete-btn" data-index="${index}">Delete</button>
+            `;
+            suggestionList.appendChild(suggestionItem);
+            });
+
+        }
+
+        //back button
+        document.getElementById('backButton').addEventListener('click', function () {
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+        updateImageAndSuggestion();
+        });
+
+        //next button
+        document.getElementById('nextButton').addEventListener('click', function () {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            updateImageAndSuggestion();
+        });
+
+        document.getElementById('suggestionForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            var name = document.getElementById('name').value;
+            var suggestionText = document.getElementById('suggestion').value;
+
+            if (name && suggestionText) {
+                images[currentImageIndex].suggestions.push({ name: name, text: suggestionText });
+                saveSuggestions();                 updateImageAndSuggestion();
+                document.getElementById('name').value = '';
+                document.getElementById('suggestion').value = '';
+            }
+        });
+
+        document.getElementById('suggestionList').addEventListener('click', function (event) {
+            if (event.target.classList.contains('reply-btn')) {
+                var index = event.target.getAttribute('data-index');
+                var suggestionItem = event.target.closest('.suggestionItem');
+                var replyForm = document.createElement('div');
+                replyForm.className = 'reply-form';
+                replyForm.innerHTML = `
+                    <input type="text" placeholder="Your reply...">
+                    <button class="submit-reply-btn" data-index="${index}">Submit</button>
+                `;
+                suggestionItem.querySelector('.comment').appendChild(replyForm);
+            } else if (event.target.classList.contains('submit-reply-btn')) {
+                var index = event.target.getAttribute('data-index');
+                var replyText = event.target.previousElementSibling.value;
+                if (replyText) {
+                    images[currentImageIndex].suggestions[index].reply = replyText;
+                    saveSuggestions();
+                    updateImageAndSuggestion();
+                }
+            } else if (event.target.classList.contains('delete-btn')) {
+                var index = event.target.getAttribute('data-index');
+                images[currentImageIndex].suggestions.splice(index, 1);
+                saveSuggestions();
+                updateImageAndSuggestion();
+            }
+        });
+
+        // Load suggestions from localStorage
+        function loadSuggestions() {
+            var suggestionsJSON = localStorage.getItem('suggestions');
+            return suggestionsJSON ? JSON.parse(suggestionsJSON) : [];
+        }
+
+        // Save suggestions to localStorage
+        function saveSuggestions() {
+            var suggestionsJSON = JSON.stringify(images);
+            localStorage.setItem('suggestions', suggestionsJSON);
+        }
+
+        // Initial load
+        var loadedImages = loadSuggestions();
+        if (loadedImages.length > 0) {
+            images = loadedImages;
+            updateImageAndSuggestion();
+        }
+    </script>
+    
+</body>
+</html>
